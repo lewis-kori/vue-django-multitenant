@@ -55,11 +55,13 @@
                     placeholder="Password"
                   ></b-form-input>
                 </b-form-group>
-                <div class="text-white my-2">
-                  <p class="float-left" @click="clearOrgData">
-                    Not part of {{ organization.name }} org?
+                <div class="row text-white my-2">
+                  <p class="col-6 float-left hoverable" @click="clearOrgData">
+                    <u> Not part of {{ organization.name }}?</u>
                   </p>
-                  <p class="float-right">Forgot password?</p>
+                  <p class="col-6 float-right hoverable">
+                    <u>Forgot password?</u>
+                  </p>
                 </div>
               </b-col>
             </b-row>

@@ -52,11 +52,18 @@ body {
 }
 .card .form-control {
   background-color: var(--black);
-  color:  var(--light);
+  color: var(--light);
 }
 
 .card-text {
   color: var(--light);
+}
+
+.hoverable {
+  cursor: pointer;
+}
+.hoverable:hover {
+  color: var(--dark-beige);
 }
 
 label {
