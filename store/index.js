@@ -9,12 +9,14 @@ export const mutations = {
       if (process.client) {
         localStorage.setItem('organization', state.organization)
       }
+      // change axios request url to post to the new org's data
       this.$axios.setBaseURL(state.organization.subdomain)
     } else {
       state.organization = {}
       if (process.client) {
         localStorage.removeItem('organization')
       }
+      // change axios request url to post to the default baseUrl
       this.$axios.setBaseURL(process.env.baseURL)
     }
   },
@@ -43,9 +45,6 @@ export const actions = {
     }
   },
   async registerUser({ dispatch }, payload) {
-    // change axios request url to post to the new org's data
-    // this.$axios.setBaseURL(payload.organization.subdomain)
-
     try {
       await this.$axios.post('v1/auth/users/', payload).then((response) => {
         if (response.status === 201) {
