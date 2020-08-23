@@ -9,17 +9,16 @@
       <template v-slot:header>Best Budgeting</template>
 
       <template v-slot:lead>
-        This is a simple hero unit, a simple jumbotron-style component for
-        calling extra attention to featured content or information.
+        This is a vue.js powered multitenant application.
       </template>
 
       <hr class="my-4" />
 
       <p>
-        It uses utility classes for typography and spacing to space content out
-        within the larger container.
+        It's powered by django and django restframework. Made with love by
+        <a href="https://lewiskori.com" target="__blank">Lewis Kori.</a>
       </p>
-      <div class="row mx-auto">
+      <div v-if="!isAuthenticated" class="row mx-auto">
         <div class="col">
           <nuxt-link :to="{ name: 'signup' }" class="btn btn-lg btn-primary"
             >Sign up for free</nuxt-link
@@ -31,7 +30,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Jumbotron',
+  computed: {
+    ...mapGetters(['isAuthenticated']),
+  },
 }
 </script>

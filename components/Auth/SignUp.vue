@@ -1,13 +1,16 @@
 <template>
   <div>
     <b-card class="text-center">
-      <b-card-text>Improve your workday with Smart budgeter.</b-card-text>
+      <b-card-text>{{ formText }}</b-card-text>
       <div>
         <b-badge pill variant="success">Step 1</b-badge>
-        <b-badge pill variant="success">Step 2</b-badge>
+        <b-badge v-if="visibleForm === 'stepTwo'" pill variant="success"
+          >Step 2</b-badge
+        >
+        <b-badge v-else pill variant="secondary">Step 2</b-badge>
       </div>
       <b-card-body>
-        <b-form>
+        <b-form method="post" @submit.prevent="completeSignUp">
           <div v-if="visibleForm === 'stepOne'">
             <b-row>
               <b-col cols="5" class="mx-auto">
@@ -17,7 +20,7 @@
                 >
                   <b-form-input
                     id="business-email-input"
-                    v-model="form.business_email"
+                    v-model="form.businessEmail"
                     type="email"
                     required
                     placeholder="Business email address"
@@ -44,8 +47,9 @@
             <b-row>
               <b-col>
                 <b-button
-                  class="col-5 btn btn-md btn-primary"
-                  @click="visibleForm = 'stepTwo'"
+                  class="col-5 btn btn-md"
+                  variant="primary"
+                  @click="stepTwo"
                 >
                   Next
                 </b-button>
@@ -119,8 +123,9 @@
             <b-row>
               <b-col>
                 <b-button
-                  class="col-5 btn btn-md btn-primary"
-                  @click="completeSignUp"
+                  class="col-5 btn btn-md"
+                  type="submit"
+                  variant="primary"
                 >
                   Complete Sign up
                 </b-button>
@@ -140,7 +145,7 @@ export default {
   data() {
     return {
       form: {
-        business_email: '',
+        businessEmail: '',
         password: '',
         firstName: '',
         lastName: '',
@@ -149,6 +154,7 @@ export default {
         personalEmail: '',
       },
       visibleForm: 'stepOne',
+      formText: 'Improve your workday with Smart budgeter.',
       business: {
         id: '',
         subdomain: '',
@@ -157,6 +163,10 @@ export default {
   },
   methods: {
     ...mapActions(['createOrganization']),
+    stepTwo() {
+      this.visibleForm = 'stepTwo'
+      this.formText = 'One step away from the budgetter of your dreams!'
+    },
     completeSignUp() {
       const userRegistrationData = {
         email: this.form.personalEmail,
@@ -168,7 +178,7 @@ export default {
       }
       const organizationData = {
         name: this.form.companyName,
-        business_email: this.form.business_email,
+        business_email: this.form.businessEmail,
         business_phone_number: this.form.phone,
       }
       const createOrgPayload = {

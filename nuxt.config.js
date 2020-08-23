@@ -1,3 +1,4 @@
+const env = require('dotenv').config()
 export default {
   /*
    ** Nuxt rendering mode
@@ -9,6 +10,7 @@ export default {
    ** See https://nuxtjs.org/api/configuration-target
    */
   target: 'server',
+  env: env.parsed,
   /*
    ** Headers of the page
    ** See https://nuxtjs.org/api/configuration-head
@@ -46,6 +48,7 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
+    '@nuxtjs/dotenv',
   ],
   /*
    ** Nuxt.js modules
@@ -55,7 +58,6 @@ export default {
     'bootstrap-vue/nuxt',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    // '@nuxtjs/auth',
     '@nuxtjs/auth-next',
     '@nuxtjs/pwa',
   ],
@@ -84,9 +86,9 @@ export default {
           autoFetch: true,
         },
         endpoints: {
-          login: { url: '/v1/auth/jwt/create/', method: 'post' },
-          refresh: { url: '/v1/auth/jwt/refresh/', method: 'post' },
-          user: { url: '/v1/auth/users/me/', method: 'get' },
+          login: { url: 'v1/auth/jwt/create/', method: 'post' },
+          refresh: { url: 'v1/auth/jwt/refresh/', method: 'post' },
+          user: { url: 'v1/auth/users/me/', method: 'get' },
           logout: false,
         },
         // autoLogout: false

@@ -1,5 +1,10 @@
 # vue-django-multitenant
 
+A multitenant application built with vue.js(nuxt).
+Backend is powered by django and django restframework.
+
+Find the backend code [here](https://github.com/lewis-kori/budgeting-app).
+
 ## Build Setup
 
 ```bash

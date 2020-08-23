@@ -19,7 +19,8 @@
           <b-row>
             <b-col>
               <b-button
-                class="col-5 btn btn-md btn-primary"
+                class="col-5 btn btn-md"
+                variant="primary"
                 @click="getOrganization"
               >
                 Next
@@ -28,7 +29,7 @@
           </b-row>
         </b-form>
         <div v-else-if="visibleForm === 'login'" class="container">
-          <b-form>
+          <b-form method="post" @submit.prevent="loginUser">
             <b-card-text>{{ organization.name }}.</b-card-text>
             <b-row>
               <b-col cols="5" class="mx-auto">
@@ -65,8 +66,9 @@
             <b-row>
               <b-col>
                 <b-button
-                  class="col-5 btn btn-md btn-primary"
-                  @click="login({ email: form.email, password: form.password })"
+                  class="col-5 btn btn-md"
+                  type="submit"
+                  variant="primary"
                 >
                   login
                 </b-button>
@@ -109,11 +111,10 @@ export default {
     },
     clearOrgData() {
       this.visibleForm = 'organization id'
-      this.setOrganization({})
-      if (process.client) {
-        localStorage.removeItem('organization')
-      }
-      this.$axios.setBaseURL('http://localhost:8000/api/')
+      this.setOrganization()
+    },
+    loginUser() {
+      this.login({ email: this.form.email, password: this.form.password })
     },
     async getOrganization() {
       try {

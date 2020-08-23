@@ -4,11 +4,19 @@ export const state = () => ({
 })
 export const mutations = {
   setOrganization(state, payload) {
-    state.organization = payload
-    if (process.client) {
-      localStorage.setItem('organization', state.organization)
+    if (payload) {
+      state.organization = payload
+      if (process.client) {
+        localStorage.setItem('organization', state.organization)
+      }
+      this.$axios.setBaseURL(state.organization.subdomain)
+    } else {
+      state.organization = {}
+      if (process.client) {
+        localStorage.removeItem('organization')
+      }
+      this.$axios.setBaseURL(process.env.baseURL)
     }
-    this.$axios.setBaseURL(state.organization.subdomain)
   },
 }
 
