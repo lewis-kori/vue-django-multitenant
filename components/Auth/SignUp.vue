@@ -8,38 +8,125 @@
       </div>
       <b-card-body>
         <b-form>
-          <b-row>
-            <b-col cols="5" class="mx-auto">
-              <b-form-group
-                id="input-group-1"
-                description="We'll never share your email with anyone else."
-              >
-                <b-form-input
-                  id="business-email-input"
-                  v-model="form.business_email"
-                  type="email"
-                  required
-                  placeholder="Business email address"
-                ></b-form-input>
-              </b-form-group>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col cols="5" class="mx-auto">
-              <b-form-group
-                description="Your password must be 8-20 characters long, contain letters
+          <div v-if="visibleForm === 'stepOne'">
+            <b-row>
+              <b-col cols="5" class="mx-auto">
+                <b-form-group
+                  id="input-group-1"
+                  description="We'll never share your email with anyone else."
+                >
+                  <b-form-input
+                    id="business-email-input"
+                    v-model="form.business_email"
+                    type="email"
+                    required
+                    placeholder="Business email address"
+                  ></b-form-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col cols="5" class="mx-auto">
+                <b-form-group
+                  description="Your password must be 8-20 characters long, contain letters
                   and numbers, and must not contain spaces, special characters,
                   or emoji."
-              >
-                <b-form-input
-                  id="text-password"
-                  v-model="form.password"
-                  type="password"
-                  placeholder="Password"
-                ></b-form-input>
-              </b-form-group>
-            </b-col>
-          </b-row>
+                >
+                  <b-form-input
+                    id="text-password"
+                    v-model="form.password"
+                    type="password"
+                    placeholder="Password"
+                  ></b-form-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col>
+                <b-button
+                  class="col-5 btn btn-md btn-primary"
+                  @click="visibleForm = 'stepTwo'"
+                >
+                  Next
+                </b-button>
+              </b-col>
+            </b-row>
+          </div>
+          <div v-else>
+            <b-row>
+              <b-col cols="5" class="mx-auto">
+                <b-form-group id="first-name-input-1">
+                  <b-form-input
+                    id="first-name-input"
+                    v-model="form.firstName"
+                    required
+                    placeholder="First Name"
+                  ></b-form-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col cols="5" class="mx-auto">
+                <b-form-group id="last-name-input-1">
+                  <b-form-input
+                    id="last-name-input"
+                    v-model="form.lastName"
+                    required
+                    placeholder="Last Name"
+                  ></b-form-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col cols="5" class="mx-auto">
+                <b-form-group>
+                  <b-form-input
+                    id="phone-number"
+                    v-model="form.phone"
+                    placeholder="Phone Number"
+                  ></b-form-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col cols="5" class="mx-auto">
+                <b-form-group id="company-name-input-1">
+                  <b-form-input
+                    id="company-name-input"
+                    v-model="form.companyName"
+                    required
+                    placeholder="Company Name"
+                  ></b-form-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col cols="5" class="mx-auto">
+                <b-form-group
+                  id="personal-email-input-1"
+                  description="We'll never share your email with anyone else."
+                >
+                  <b-form-input
+                    id="personal-email-input"
+                    v-model="form.personalEmail"
+                    type="email"
+                    required
+                    placeholder="User Email"
+                  ></b-form-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col>
+                <b-button
+                  class="col-5 btn btn-md btn-primary"
+                  @click="completeSignUp"
+                >
+                  Complete Sign up
+                </b-button>
+              </b-col>
+            </b-row>
+          </div>
         </b-form>
       </b-card-body>
     </b-card>
@@ -47,6 +134,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'SignUp',
   data() {
@@ -54,8 +142,41 @@ export default {
       form: {
         business_email: '',
         password: '',
+        firstName: '',
+        lastName: '',
+        phone: '',
+        companyName: '',
+        personalEmail: '',
+      },
+      visibleForm: 'stepOne',
+      business: {
+        id: '',
+        subdomain: '',
       },
     }
+  },
+  methods: {
+    ...mapActions(['createOrganization']),
+    completeSignUp() {
+      const userRegistrationData = {
+        email: this.form.personalEmail,
+        first_name: this.form.firstName,
+        last_name: this.form.lastName,
+        organization: 1,
+        role: 'Admin',
+        password: this.form.password,
+      }
+      const organizationData = {
+        name: this.form.companyName,
+        business_email: this.form.business_email,
+        business_phone_number: this.form.phone,
+      }
+      const createOrgPayload = {
+        organization: organizationData,
+        user: userRegistrationData,
+      }
+      this.createOrganization(createOrgPayload)
+    },
   },
 }
 </script>
