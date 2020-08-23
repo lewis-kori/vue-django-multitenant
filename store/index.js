@@ -21,7 +21,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async createOrganization({ dispatch }, payload) {
+  async createOrganization({ commit, dispatch }, payload) {
     try {
       await this.$axios
         .post('v1/tenants/', payload.organization)
@@ -31,34 +31,31 @@ export const actions = {
               name: response.data.name,
               subdomain: `http://${response.data.subdomain}:8000/api/`,
             }
-            const userRegistrationPayload = {
-              user: payload.user,
-              organization: organizationData,
-            }
-            dispatch('registerUser', userRegistrationPayload)
+            commit('setOrganization', organizationData)
+            // give function to complete setting up new base url
+            setTimeout(() => {
+              dispatch('registerUser', payload.user)
+            }, 200)
           }
         })
     } catch (e) {
       console.log('error is', e)
     }
   },
-  async registerUser({ commit, dispatch }, payload) {
+  async registerUser({ dispatch }, payload) {
     // change axios request url to post to the new org's data
-    this.$axios.setBaseURL(payload.organization.subdomain)
+    // this.$axios.setBaseURL(payload.organization.subdomain)
 
     try {
-      await this.$axios
-        .post('v1/auth/users/', payload.user)
-        .then((response) => {
-          if (response.status === 201) {
-            const loginData = {
-              email: payload.user.email,
-              password: payload.user.password,
-            }
-            commit('setOrganization', payload.organization)
-            dispatch('login', loginData)
+      await this.$axios.post('v1/auth/users/', payload).then((response) => {
+        if (response.status === 201) {
+          const loginData = {
+            email: payload.email,
+            password: payload.password,
           }
-        })
+          dispatch('login', loginData)
+        }
+      })
     } catch (e) {}
   },
   async login({ commit }, payload) {
