@@ -13,8 +13,10 @@
         <b-navbar-nav v-if="isAuthenticated" class="ml-auto">
           <b-nav-item>{{ organization.name }}</b-nav-item>
           <b-nav-item>{{ loggedInUser.first_name }}</b-nav-item>
-          <b-nav-item class="btn btn-sm btn-primary" @click="logout"
-            >Log out</b-nav-item
+          <b-nav-item @click="logout"
+            ><b-button variant="primary" size="sm"
+              >Log out</b-button
+            ></b-nav-item
           >
         </b-navbar-nav>
         <b-navbar-nav v-else class="ml-auto">

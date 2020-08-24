@@ -47,10 +47,14 @@
             <b-row>
               <b-col>
                 <b-button
+                  v-if="form.password && form.businessEmail"
                   class="col-5 btn btn-md"
                   variant="primary"
                   @click="stepTwo"
                 >
+                  Next
+                </b-button>
+                <b-button v-else disabled class="col-5 btn btn-md">
                   Next
                 </b-button>
               </b-col>
