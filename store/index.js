@@ -44,7 +44,7 @@ export const actions = {
         })
     } catch (e) {
       if (e.response.status === 404) {
-        this.$toast.error('Organization with that ID does not exist')
+        this.$toast.error(`${e.response.data.detail}`)
       }
     }
   },

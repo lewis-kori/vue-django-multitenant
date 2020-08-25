@@ -1,5 +1,5 @@
 <template>
-  <b-form>
+  <b-form method="post" @submit.prevent="getOrganization(organizationId)">
     <b-card-text>Enter your organization id.</b-card-text>
     <b-row>
       <b-col cols="5" class="mx-auto">
@@ -15,11 +15,7 @@
     </b-row>
     <b-row>
       <b-col>
-        <b-button
-          class="col-5 btn btn-md"
-          variant="primary"
-          @click="getOrganization(organizationId)"
-        >
+        <b-button class="col-5 btn btn-md" type="submit" variant="primary">
           Next
         </b-button>
       </b-col>
