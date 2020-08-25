@@ -100,7 +100,7 @@ export default {
   computed: {
     ...mapGetters(['organization']),
   },
-  created() {
+  mounted() {
     this.getVisibleForm()
   },
   methods: {
@@ -126,6 +126,7 @@ export default {
           })
           .then((response) => {
             if (response.status === 200) {
+              this.form.organizationId = ''
               const orgData = {
                 name: response.data.name,
                 subdomain: `http://${response.data.subdomain}:8000/api/`,
@@ -134,7 +135,11 @@ export default {
               this.visibleForm = 'login'
             }
           })
-      } catch {}
+      } catch (e) {
+        if (e.response.status === 404) {
+          this.$toast.error('Organization with that ID does not exist')
+        }
+      }
     },
   },
 }

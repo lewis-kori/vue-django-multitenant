@@ -1,8 +1,8 @@
-export default function ({ $axios }) {
+export default function ({ $axios, store }) {
   if (process.client) {
-    const organization = localStorage.getItem('organization')
+    const organization = JSON.parse(localStorage.getItem('organization'))
     if (organization && organization.subdomain) {
-      $axios.setBaseURL(organization.subdomain)
+      store.commit('setOrganization', organization)
     }
   }
 }

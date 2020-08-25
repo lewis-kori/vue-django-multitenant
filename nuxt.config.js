@@ -60,6 +60,13 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
     '@nuxtjs/pwa',
+    [
+      'vue-toastification/nuxt',
+      {
+        timeout: 2000,
+        draggable: true,
+      },
+    ],
   ],
   /*
    ** Axios module configuration
