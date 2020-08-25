@@ -2,33 +2,10 @@
   <div>
     <b-card class="text-center">
       <b-card-body>
-        <b-form v-if="visibleForm === 'organization id'">
-          <b-card-text>Enter your organization id.</b-card-text>
-          <b-row>
-            <b-col cols="5" class="mx-auto">
-              <b-form-group id="input-group-1">
-                <b-form-input
-                  id="organization-id-input"
-                  v-model="form.organizationId"
-                  required
-                  placeholder="Enter your organization ID..."
-                ></b-form-input>
-              </b-form-group>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col>
-              <b-button
-                class="col-5 btn btn-md"
-                variant="primary"
-                @click="getOrganization"
-              >
-                Next
-              </b-button>
-            </b-col>
-          </b-row>
-        </b-form>
-        <div v-else-if="visibleForm === 'login'" class="container">
+        <div v-if="!organization.name">
+          <GetOrg />
+        </div>
+        <div v-else class="container">
           <b-form method="post" @submit.prevent="loginUser">
             <b-card-text>{{ organization.name }}.</b-card-text>
             <b-row>
@@ -85,61 +62,30 @@
 
 <script>
 import { mapGetters, mapActions, mapMutations } from 'vuex'
+import GetOrg from './GetOrg'
 export default {
   name: 'Login',
+  components: { GetOrg },
   data() {
     return {
       form: {
-        organizationId: '',
         email: '',
         password: '',
       },
-      visibleForm: 'organization id',
     }
   },
   computed: {
     ...mapGetters(['organization']),
   },
-  mounted() {
-    this.getVisibleForm()
-  },
   methods: {
     ...mapActions(['login']),
     ...mapMutations(['setOrganization']),
-    getVisibleForm() {
-      if (this.organization.name) {
-        this.visibleForm = 'login'
-      }
-    },
     clearOrgData() {
       this.visibleForm = 'organization id'
       this.setOrganization()
     },
     loginUser() {
       this.login({ email: this.form.email, password: this.form.password })
-    },
-    async getOrganization() {
-      try {
-        await this.$axios
-          .post('v1/tenants/info/', {
-            tenant_id: this.form.organizationId,
-          })
-          .then((response) => {
-            if (response.status === 200) {
-              this.form.organizationId = ''
-              const orgData = {
-                name: response.data.name,
-                subdomain: `http://${response.data.subdomain}:8000/api/`,
-              }
-              this.setOrganization(orgData)
-              this.visibleForm = 'login'
-            }
-          })
-      } catch (e) {
-        if (e.response.status === 404) {
-          this.$toast.error('Organization with that ID does not exist')
-        }
-      }
     },
   },
 }

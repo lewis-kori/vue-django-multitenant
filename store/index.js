@@ -27,6 +27,27 @@ export const mutations = {
 }
 
 export const actions = {
+  async getOrganization({ commit }, payload) {
+    try {
+      await this.$axios
+        .post('v1/tenants/info/', {
+          tenant_id: payload,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            const orgData = {
+              name: response.data.name,
+              subdomain: `http://${response.data.subdomain}:8000/api/`,
+            }
+            commit('setOrganization', orgData)
+          }
+        })
+    } catch (e) {
+      if (e.response.status === 404) {
+        this.$toast.error('Organization with that ID does not exist')
+      }
+    }
+  },
   async createOrganization({ commit, dispatch }, payload) {
     try {
       await this.$axios
