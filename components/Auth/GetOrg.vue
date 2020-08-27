@@ -2,7 +2,7 @@
   <b-form method="post" @submit.prevent="getOrganization(organizationId)">
     <b-card-text>Enter your organization id.</b-card-text>
     <b-row>
-      <b-col cols="5" class="mx-auto">
+      <b-col cols="10" md="5" class="mx-auto">
         <b-form-group id="input-group-1">
           <b-form-input
             id="organization-id-input"
@@ -15,7 +15,11 @@
     </b-row>
     <b-row>
       <b-col>
-        <b-button class="col-5 btn btn-md" type="submit" variant="primary">
+        <b-button
+          class="col-10 col-md-5 btn btn-md"
+          type="submit"
+          variant="primary"
+        >
           Next
         </b-button>
       </b-col>

@@ -62,7 +62,7 @@ body {
 .hoverable {
   cursor: pointer;
 }
-.hoverable:hover {
+.hoverable:hover, a:hover {
   color: var(--dark-beige);
 }
 

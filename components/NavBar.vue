@@ -11,7 +11,9 @@
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav v-if="isAuthenticated" class="ml-auto">
-          <b-nav-item>{{ organization.name }}</b-nav-item>
+          <b-nav-item v-b-toggle.sidebar>
+            {{ organization.name }} Menu
+          </b-nav-item>
           <b-nav-item>{{ loggedInUser.first_name }}</b-nav-item>
           <b-nav-item @click="logout"
             ><b-button variant="primary" size="sm"

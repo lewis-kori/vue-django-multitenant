@@ -14,7 +14,7 @@
           <b-form method="post" @submit.prevent="completeSignUp">
             <div v-if="visibleForm === 'stepOne'">
               <b-row>
-                <b-col cols="5" class="mx-auto">
+                <b-col cols="12" md="5" class="mx-auto">
                   <b-form-group
                     id="input-group-1"
                     description="We'll never share your email with anyone else."
@@ -30,7 +30,7 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col cols="5" class="mx-auto">
+                <b-col cols="12" md="5" class="mx-auto">
                   <b-form-group
                     description="Your password must be 8-20 characters long, contain letters
                   and numbers, and must not contain spaces, special characters,
@@ -49,13 +49,13 @@
                 <b-col>
                   <b-button
                     v-if="form.password && form.businessEmail"
-                    class="col-5 btn btn-md"
+                    class="col-12 col-md-5 btn btn-md"
                     variant="primary"
                     @click="stepTwo"
                   >
                     Next
                   </b-button>
-                  <b-button v-else disabled class="col-5 btn btn-md">
+                  <b-button v-else disabled class="col-12 col-md-5 btn btn-md">
                     Next
                   </b-button>
                 </b-col>
@@ -63,7 +63,7 @@
             </div>
             <div v-else>
               <b-row>
-                <b-col cols="5" class="mx-auto">
+                <b-col cols="12" md="5" class="mx-auto">
                   <b-form-group id="first-name-input-1">
                     <b-form-input
                       id="first-name-input"
@@ -75,7 +75,7 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col cols="5" class="mx-auto">
+                <b-col cols="12" md="5" class="mx-auto">
                   <b-form-group id="last-name-input-1">
                     <b-form-input
                       id="last-name-input"
@@ -87,7 +87,7 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col cols="5" class="mx-auto">
+                <b-col cols="12" md="5" class="mx-auto">
                   <b-form-group>
                     <b-form-input
                       id="phone-number"
@@ -98,7 +98,7 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col cols="5" class="mx-auto">
+                <b-col cols="12" md="5" class="mx-auto">
                   <b-form-group id="company-name-input-1">
                     <b-form-input
                       id="company-name-input"
@@ -110,7 +110,7 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col cols="5" class="mx-auto">
+                <b-col cols="12" md="5" class="mx-auto">
                   <b-form-group
                     id="personal-email-input-1"
                     description="We'll never share your email with anyone else."
@@ -128,7 +128,7 @@
               <b-row>
                 <b-col>
                   <b-button
-                    class="col-5 btn btn-md"
+                    class="col-12 col-md-5 btn btn-md"
                     type="submit"
                     variant="primary"
                   >

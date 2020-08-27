@@ -6,7 +6,7 @@
       border-variant="dark"
       fluid
     >
-      <template v-slot:header>Best Budgeting</template>
+      <template v-slot:header>Defyn tech</template>
 
       <template v-slot:lead>
         This is a vue.js powered multitenant application.

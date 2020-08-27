@@ -94,7 +94,7 @@ export const actions = {
         data: payload,
       })
       this.$toast.success(
-        `Login successful, welcome to ${state.organization.name} budgetter.`
+        `Login successful, welcome to ${state.organization.name} Defyn account.`
       )
       this.$router.push('/')
     } catch (e) {

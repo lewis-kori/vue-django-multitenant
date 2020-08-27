@@ -2,13 +2,19 @@
   <div>
     <NavBar />
     <Nuxt />
+    <SideNav v-if="isAuthenticated" />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import NavBar from '../components/NavBar'
+import SideNav from '../components/SideNav'
 export default {
-  components: { NavBar },
+  components: { NavBar, SideNav },
+  computed: {
+    ...mapGetters(['isAuthenticated']),
+  },
 }
 </script>
 
