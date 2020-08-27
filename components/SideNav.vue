@@ -22,13 +22,25 @@
             <b-nav vertical>
               <b-nav-item active @click="hide">Users</b-nav-item>
               <b-nav-item-dropdown text="Departments" right>
-                <b-dropdown-item href="#">Finance</b-dropdown-item>
-                <b-dropdown-item href="#">HR</b-dropdown-item>
-                <b-dropdown-item href="#">R&D</b-dropdown-item>
-                <b-dropdown-item href="#">FA</b-dropdown-item>
+                <b-dropdown-item
+                  v-for="department in departments"
+                  :key="department.id"
+                  >{{ department.name }}</b-dropdown-item
+                >
+                <hr />
+                <b-dropdown-item
+                  ><nuxt-link :to="{ name: 'departments-new' }"
+                    >New Department</nuxt-link
+                  ></b-dropdown-item
+                >
               </b-nav-item-dropdown>
 
-              <b-nav-item href="#link-2" @click="hide">Another Link</b-nav-item>
+              <b-nav-item></b-nav-item>
+              <b-nav-item
+                ><nuxt-link :to="{ name: 'accounts-new' }"
+                  >New Account</nuxt-link
+                ></b-nav-item
+              >
             </b-nav>
           </nav>
         </div>
@@ -48,11 +60,20 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'SideNav',
   computed: {
-    ...mapGetters(['loggedInUser']),
+    ...mapGetters({
+      loggedInUser: 'loggedInUser',
+      departments: 'core/departments',
+    }),
+  },
+  mounted() {
+    this.getDepartments()
+  },
+  methods: {
+    ...mapActions({ getDepartments: 'core/getDepartments' }),
   },
 }
 </script>

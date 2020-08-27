@@ -62,10 +62,18 @@ body {
 .hoverable {
   cursor: pointer;
 }
-.hoverable:hover, a:hover {
+.hoverable:hover,
+a:hover {
   color: var(--dark-beige);
 }
 
 label {
   color: var(--marine-blue);
+}
+
+.bg-defyn {
+  background-color: var(--dark-beige);
+}
+.text-defyn {
+  color: var(--dark-beige);
 }
