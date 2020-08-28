@@ -25,7 +25,13 @@
                 <b-dropdown-item
                   v-for="department in departments"
                   :key="department.id"
-                  >{{ department.name }}</b-dropdown-item
+                  ><nuxt-link
+                    :to="{
+                      name: 'departments-id',
+                      params: { id: department.id },
+                    }"
+                    >{{ department.name }}</nuxt-link
+                  ></b-dropdown-item
                 >
                 <hr />
                 <b-dropdown-item
@@ -39,6 +45,11 @@
               <b-nav-item
                 ><nuxt-link :to="{ name: 'accounts-new' }"
                   >New Account</nuxt-link
+                ></b-nav-item
+              >
+              <b-nav-item
+                ><nuxt-link :to="{ name: 'accounts-budgets-new' }"
+                  >New Budget</nuxt-link
                 ></b-nav-item
               >
             </b-nav>

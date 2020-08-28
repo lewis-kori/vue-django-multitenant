@@ -105,15 +105,21 @@ export const actions = {
       this.$toast.error('Could not retrieve accounts at this time.')
     }
   },
-  async getExpenses({ commit }) {
+  async getExpenses({ commit }, payload) {
     try {
-      await this.$axios.get('v1/expenses/').then((response) => {
+      let url = ''
+      if (payload) {
+        url = `v1/expenses/department/${payload.department_id}/`
+      } else {
+        url = 'v1/expenses/'
+      }
+      await this.$axios.get(url).then((response) => {
         if (response.status === 200) {
           commit('setExpenses', response.data)
         }
       })
     } catch (e) {
-      this.$toast.error('Could not retrieve expenses at this time.')
+      this.$toast.error(`Could not retrieve expenses at this time. ${e}`)
     }
   },
   async newExpense({ commit }, payload) {
@@ -122,11 +128,11 @@ export const actions = {
         if (response.status === 201) {
           commit('updateExpenses', response.data)
           this.$router.push({ name: 'main' })
-          this.$toast.success(`${response.data.name} created successfully.`)
+          this.$toast.success(`expense created successfully.`)
         }
       })
     } catch (e) {
-      this.$toast.error('could not create account at this time')
+      this.$toast.error('could not create expense at this time')
     }
   },
 }
