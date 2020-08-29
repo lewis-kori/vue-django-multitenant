@@ -20,8 +20,8 @@ import { mapGetters, mapActions } from 'vuex'
 import AccountInfo from '../components/Main/Accounts/AccountInfo'
 import Expenses from '../components/Main/Expenses/Expenses'
 export default {
-  components: { AccountInfo, Expenses },
   middleware: 'auth',
+  components: { AccountInfo, Expenses },
   computed: {
     ...mapGetters({ accounts: 'core/accounts', expenses: 'core/expenses' }),
   },

@@ -94,9 +94,15 @@ export const actions = {
       this.$toast.error('could not create account at this time')
     }
   },
-  async getBudgets({ commit }) {
+  async getBudgets({ commit }, payload) {
     try {
-      await this.$axios.get('v1/budgets/').then((response) => {
+      let url = ''
+      if (payload) {
+        url = `v1/budgets/department/${payload.department_id}/`
+      } else {
+        url = 'v1/budgets/'
+      }
+      await this.$axios.get(url).then((response) => {
         if (response.status === 200) {
           commit('setBudgets', response.data)
         }

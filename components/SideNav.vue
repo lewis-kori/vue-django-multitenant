@@ -10,7 +10,7 @@
       bg-variant="dark"
       text-variant="light"
     >
-      <template v-slot:default="{ hide }">
+      <template>
         <div class="p-3">
           <h4 id="sidebar-title">Menu</h4>
 
@@ -20,7 +20,6 @@
           </p>
           <nav class="mb-3">
             <b-nav vertical>
-              <b-nav-item active @click="hide">Users</b-nav-item>
               <b-nav-item-dropdown text="Departments" right>
                 <b-dropdown-item
                   v-for="department in departments"

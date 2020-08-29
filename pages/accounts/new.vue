@@ -7,7 +7,7 @@
 <script>
 import AccountForm from '../../components/Main/Accounts/AccountForm'
 export default {
-  components: { AccountForm },
   middleware: 'auth',
+  components: { AccountForm },
 }
 </script>

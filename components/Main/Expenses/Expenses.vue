@@ -27,7 +27,7 @@
                   <tr v-for="expense in expenses" :key="expense.id">
                     <td>{{ expense.budget.department.name }}</td>
                     <td>{{ expense.date }}</td>
-                    <td>{{ expense.use }}</td>
+                    <td>{{ shortenText(expense.use) }}</td>
                     <td>{{ expense.amount }}</td>
 
                     <td>
@@ -79,6 +79,12 @@ export default {
     populateModalData(title, text) {
       this.modalData.title = title
       this.modalData.text = text
+    },
+    shortenText(text) {
+      if (text.length > 150) {
+        return text.slice(0, 150) + '...'
+      }
+      return text
     },
   },
 }
