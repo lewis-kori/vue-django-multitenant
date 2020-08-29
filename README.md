@@ -1,7 +1,8 @@
-# vue-django-multitenant
+# Multi tenant organizational expense tracker
 
-A multitenant application built with vue.js(nuxt).
-Backend is powered by django and django restframework.
+The project is the frontend app for a multitenant organization expense tracker built with django and django restframework for the backend.
+
+![django-multitenant](https://res.cloudinary.com/lewiskori/image/upload/v1598709762/blog/Screenshot_2020-08-29_vue-django-multitenant_cwgmgb.png)
 
 Find the backend code [here](https://github.com/lewis-kori/budgeting-app).
 
