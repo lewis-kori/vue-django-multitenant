@@ -60,6 +60,7 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth-next',
     '@nuxtjs/pwa',
+    // Doc: https://github.com/Maronato/vue-toastification
     [
       'vue-toastification/nuxt',
       {

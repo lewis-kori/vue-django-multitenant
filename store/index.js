@@ -96,7 +96,7 @@ export const actions = {
       this.$toast.success(
         `Login successful, welcome to ${state.organization.name} Defyn account.`
       )
-      this.$router.push('/')
+      this.$router.push({ name: 'main' })
     } catch (e) {
       this.$toast.error(e.response.data.detail)
     }

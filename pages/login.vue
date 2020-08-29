@@ -7,6 +7,7 @@
 <script>
 import Login from '../components/Auth/Login'
 export default {
+  middleware: 'guest',
   components: { Login },
 }
 </script>

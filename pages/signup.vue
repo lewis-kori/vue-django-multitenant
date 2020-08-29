@@ -7,6 +7,7 @@
 <script>
 import SignUp from '../components/Auth/SignUp'
 export default {
+  middleware: 'guest',
   components: { SignUp },
 }
 </script>

@@ -10,7 +10,7 @@
       bg-variant="dark"
       text-variant="light"
     >
-      <template v-slot:default="{ hide }">
+      <template>
         <div class="p-3">
           <h4 id="sidebar-title">Menu</h4>
 
@@ -20,15 +20,37 @@
           </p>
           <nav class="mb-3">
             <b-nav vertical>
-              <b-nav-item active @click="hide">Users</b-nav-item>
               <b-nav-item-dropdown text="Departments" right>
-                <b-dropdown-item href="#">Finance</b-dropdown-item>
-                <b-dropdown-item href="#">HR</b-dropdown-item>
-                <b-dropdown-item href="#">R&D</b-dropdown-item>
-                <b-dropdown-item href="#">FA</b-dropdown-item>
+                <b-dropdown-item
+                  v-for="department in departments"
+                  :key="department.id"
+                  ><nuxt-link
+                    :to="{
+                      name: 'departments-id',
+                      params: { id: department.id },
+                    }"
+                    >{{ department.name }}</nuxt-link
+                  ></b-dropdown-item
+                >
+                <hr />
+                <b-dropdown-item
+                  ><nuxt-link :to="{ name: 'departments-new' }"
+                    >New Department</nuxt-link
+                  ></b-dropdown-item
+                >
               </b-nav-item-dropdown>
 
-              <b-nav-item href="#link-2" @click="hide">Another Link</b-nav-item>
+              <b-nav-item></b-nav-item>
+              <b-nav-item
+                ><nuxt-link :to="{ name: 'accounts-new' }"
+                  >New Account</nuxt-link
+                ></b-nav-item
+              >
+              <b-nav-item
+                ><nuxt-link :to="{ name: 'accounts-budgets-new' }"
+                  >New Budget</nuxt-link
+                ></b-nav-item
+              >
             </b-nav>
           </nav>
         </div>
@@ -48,11 +70,20 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'SideNav',
   computed: {
-    ...mapGetters(['loggedInUser']),
+    ...mapGetters({
+      loggedInUser: 'loggedInUser',
+      departments: 'core/departments',
+    }),
+  },
+  mounted() {
+    this.getDepartments()
+  },
+  methods: {
+    ...mapActions({ getDepartments: 'core/getDepartments' }),
   },
 }
 </script>
