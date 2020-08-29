@@ -1,29 +1,32 @@
 <template>
   <div>
     <b-jumbotron
-      class="full-jumbotron"
+      class="jumbotron"
       text-variant="white"
       border-variant="dark"
       fluid
     >
-      <template v-slot:header>Defyn tech</template>
+      <template v-slot:header
+        ><span class="d-flex justify-content-center">Defyn tech</span></template
+      >
 
       <template v-slot:lead>
-        This is a vue.js powered multitenant application.
+        <span class="d-flex justify-content-center"
+          >This is a vue.js powered multitenant application.</span
+        >
       </template>
 
-      <hr class="my-4" />
-
-      <p>
-        It's powered by django and django restframework. Made with love by
-        <a href="https://lewiskori.com" target="__blank">Lewis Kori.</a>
+      <p class="d-flex justify-content-center">
+        It's powered by django and django restframework on the backend.
       </p>
-      <div v-if="!isAuthenticated" class="row mx-auto">
-        <div class="col">
-          <nuxt-link :to="{ name: 'signup' }" class="btn btn-lg btn-primary"
-            >Sign up for free</nuxt-link
-          >
-        </div>
+      <p class="d-flex justify-content-center">
+        Made with ❤️ by
+        <a href="https://lewiskori.com" target="__blank">@Lewis Kori.</a>
+      </p>
+      <div v-if="!isAuthenticated" class="d-flex justify-content-center">
+        <nuxt-link :to="{ name: 'signup' }" class="btn btn-lg btn-primary"
+          >Sign up for free</nuxt-link
+        >
       </div>
     </b-jumbotron>
   </div>
