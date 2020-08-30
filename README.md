@@ -2,7 +2,7 @@
 
 The project is the frontend app for a multitenant organization expense tracker built with django and django restframework for the backend.
 
-![django-multitenant](https://res.cloudinary.com/lewiskori/image/upload/v1598709762/blog/Screenshot_2020-08-29_vue-django-multitenant_cwgmgb.png)
+![django-multitenant](https://res.cloudinary.com/lewiskori/image/upload/v1598773348/Screenshot_2020-08-30_vue-django-multitenant_wlrpcz.png)
 
 Find the backend code [here](https://github.com/lewis-kori/budgeting-app).
 
