@@ -7,7 +7,9 @@
       fluid
     >
       <template v-slot:header
-        ><span class="d-flex justify-content-center">Defyn tech</span></template
+        ><span class="d-flex justify-content-center"
+          >Defyne tech</span
+        ></template
       >
 
       <template v-slot:lead>

@@ -70,15 +70,14 @@ a:hover {
 label {
   color: var(--marine-blue);
 }
-@media (min-width: 576px) {
+#services {
+  padding: 5rem 0;
+}
+@media (max-width: 576px) {
   #services {
     padding: 12.5rem 0;
   }
 }
-#services {
-  padding: 5rem 0;
-}
-
 
 .service-img {
   width: 12.5rem;
