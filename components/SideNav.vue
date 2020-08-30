@@ -16,7 +16,12 @@
 
           <p>
             welcome {{ loggedInUser.first_name }},<br />
-            Defyn brings you the best organizational experience.
+            Defyne brings you the best organizational expense tracking
+            experience.
+          </p>
+          <p>
+            You're part of {{ organization.name }} with ID:
+            {{ organization.organization_id }}
           </p>
           <nav class="mb-3">
             <b-nav vertical>
@@ -74,6 +79,7 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'SideNav',
   computed: {
+<<<<<<< HEAD
     ...mapGetters({
       loggedInUser: 'loggedInUser',
       departments: 'core/departments',
@@ -84,6 +90,9 @@ export default {
   },
   methods: {
     ...mapActions({ getDepartments: 'core/getDepartments' }),
+=======
+    ...mapGetters(['loggedInUser', 'organization']),
+>>>>>>> authentication
   },
 }
 </script>
