@@ -79,9 +79,9 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'SideNav',
   computed: {
-<<<<<<< HEAD
     ...mapGetters({
       loggedInUser: 'loggedInUser',
+      organization: 'organization',
       departments: 'core/departments',
     }),
   },
@@ -90,9 +90,6 @@ export default {
   },
   methods: {
     ...mapActions({ getDepartments: 'core/getDepartments' }),
-=======
-    ...mapGetters(['loggedInUser', 'organization']),
->>>>>>> authentication
   },
 }
 </script>
