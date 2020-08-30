@@ -38,12 +38,15 @@ export const actions = {
             const orgData = {
               name: response.data.name,
               subdomain: `http://${response.data.subdomain}:8000/api/`,
+              organization_id: response.data.organization_id,
             }
             commit('setOrganization', orgData)
           }
         })
     } catch (e) {
       if (e.response.status === 404) {
+        this.$toast.error(`${e.response.data.detail}`)
+      } else if (e.response.status === 403) {
         this.$toast.error(`${e.response.data.detail}`)
       }
     }
@@ -57,6 +60,7 @@ export const actions = {
             const organizationData = {
               name: response.data.name,
               subdomain: `http://${response.data.subdomain}:8000/api/`,
+              organization_id: response.data.organization_id,
             }
             commit('setOrganization', organizationData)
             // give function to complete setting up new base url
@@ -94,7 +98,7 @@ export const actions = {
         data: payload,
       })
       this.$toast.success(
-        `Login successful, welcome to ${state.organization.name} Defyn account.`
+        `Login successful, welcome to ${state.organization.name} Defyne account.`
       )
       this.$router.push({ name: 'main' })
     } catch (e) {

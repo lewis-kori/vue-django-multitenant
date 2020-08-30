@@ -81,11 +81,6 @@ label {
   background-color: var(--black);
   color: var(--light);
 }
-@media (min-width: 576px) {
-  #services {
-    padding: 12.5rem 0;
-  }
-}
 
 #services {
   padding: 5rem 0;
@@ -97,4 +92,10 @@ label {
 }
 .services {
   padding: 1.25rem;
+}
+
+@media (max-width: 576px) {
+  #services {
+    padding: 12.5rem 0;
+  }
 }
