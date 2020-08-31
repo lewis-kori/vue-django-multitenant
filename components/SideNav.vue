@@ -20,8 +20,8 @@
             experience.
           </p>
           <p>
-            You're part of {{ organization.name }} with ID:
-            {{ organization.organization_id }}
+            Organization: {{ organization.name }} <br />
+            ID: {{ organization.organization_id }}
           </p>
           <nav class="mb-3">
             <b-nav vertical>

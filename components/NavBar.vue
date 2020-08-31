@@ -26,7 +26,10 @@
             ><nuxt-link :to="{ name: 'login' }">login</nuxt-link></b-nav-item
           >
           <b-nav-item
-            ><nuxt-link class="btn btn-sm btn-primary" :to="{ name: 'signup' }"
+            ><nuxt-link
+              v-if="!organization.name"
+              class="btn btn-sm btn-primary"
+              :to="{ name: 'signup' }"
               >Sign up</nuxt-link
             ></b-nav-item
           ></b-navbar-nav
