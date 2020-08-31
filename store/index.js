@@ -37,7 +37,7 @@ export const actions = {
           if (response.status === 200) {
             const orgData = {
               name: response.data.name,
-              subdomain: `http://${response.data.subdomain}:8000/api/`,
+              subdomain: `https://${response.data.subdomain}/api/`,
               organization_id: response.data.organization_id,
             }
             commit('setOrganization', orgData)
@@ -59,7 +59,7 @@ export const actions = {
           if (response.status === 201) {
             const organizationData = {
               name: response.data.name,
-              subdomain: `http://${response.data.subdomain}:8000/api/`,
+              subdomain: `https://${response.data.subdomain}/api/`,
               organization_id: response.data.organization_id,
             }
             commit('setOrganization', organizationData)
